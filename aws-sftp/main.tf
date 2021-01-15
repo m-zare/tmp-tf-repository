@@ -14,3 +14,11 @@ resource "aws_s3_bucket" "agencies" {
     owner = "mzare"
   }
 }
+
+resource "aws_transfer_server" "sftp-server" {
+  identity_provider_type = "SERVICE_MANAGED"
+
+  tags = {
+    owner = "mzare"
+  }
+}
