@@ -5,10 +5,11 @@ module "sftp_server" {
 }
 
 module "sftp_user" {
-  source         = "./modules/sftp_user/"
- 
-  bucket         = sftp_server.bucket
-  sftp_server_id = sftp_server.id
-  username       = "ftp_user"
-  ssh_key        = ""
+  for_each = var.username
+  source   = "./modules/sftp_user/"
+  
+  bucket         = module.sftp_server.bucket
+  sftp_server_id = module.sftp_server.id
+  username       = each.key
+  ssh_key        = each.value
 }

@@ -3,6 +3,10 @@ variable "region" {
 }
 
 variable "username" {
-  type = string
   description = "SFTP user"
+
+  default = {
+    user1 = "public ssh-key"
+    user2 = "public ssh-key"
+  }
 }
