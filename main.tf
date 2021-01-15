@@ -1,7 +1,7 @@
 module "sftp_server" {
   source = "./modules/sftp_server/"
 
-  bucket = "sftp_agencies" 
+  bucket = "sftp-agencies" 
 }
 
 module "sftp_user" {
