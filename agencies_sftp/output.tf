@@ -14,6 +14,6 @@ output "bucket" {
 }
 
 output "user_list" {
-  value       = [for k, _ in var.username : k] 
+  value       = [for k, _ in var.username : k]
   description = "SFTP user name"
 }

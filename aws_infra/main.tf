@@ -1,5 +1,5 @@
 provider "aws" {
-	region = var.region
+  region = var.region
 }
 
 resource "aws_s3_bucket" "tf_state" {
@@ -20,7 +20,7 @@ resource "aws_s3_bucket" "tf_state" {
 }
 
 resource "aws_dynamodb_table" "tf_locks" {
-  name = "sftp-terraform-state-lock-dynamo"
+  name         = "sftp-terraform-state-lock-dynamo"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
   attribute {
