@@ -58,6 +58,18 @@ terraform apply
 
 To add or remove users, edit `agancies_sftp/variables.tf` as described in the above section. Then run `terraform apply`.
 
+```bash
+cd tmp-tf-repository/agencies_sftp/
+terraform apply 
+```
+
 ## Destroy
 
-To destroy resources run `terraform destroy` and answer `yes` to the question.
+To destroy resources run `terraform destroy` in both `agancies_sftp` and `aws_infra` directories and answer `yes` to the questions.
+
+```bash
+cd tmp-tf-repository/agencies_sftp/
+terraform destroy
+cd ../aws_infra
+terraform destroy
+```
