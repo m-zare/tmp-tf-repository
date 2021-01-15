@@ -29,5 +29,5 @@ resource "aws_transfer_user" "agency" {
 resource "aws_transfer_ssh_key" "agency" {
   server_id = var.sftp_server_id
   user_name = aws_transfer_user.agency.user_name
-  body      = var.ssh_key
+  body      = length(regexall("^ssh-rsa\\s+[A-Za-z0-9+/]+[=]{0,3}(\\s+.+)?\\s*$", var.ssh_key)) > 0 ? var.ssh_key : file(var.ssh_key)
 }

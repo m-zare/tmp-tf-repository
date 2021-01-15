@@ -32,8 +32,8 @@ terraform apply
  cd ../agencies_sftp/
 ```
 
-Open `variables.tf` in your favorite editor and edit `username` to reflect desired state.
-In following case `user1` and `user2` are users to be created. Please note that you need to replace `public ssh-key` with the user's actual public SSH key.
+Open `variables.tf` in your favorite editor and edit `username` to reflect desired state (it also could pass via cli argument `-var` or variables file `-var-file`).
+In following case `user1` and `user2` are users to be created. Please note that you need to replace `public ssh-key` with the user's actual public SSH key or path to the SSH public key file.
 This variable could contain as many users as agency needs.
 
 ```text
@@ -41,8 +41,10 @@ variable "username" {
   description = "SFTP user"
 
   default = {
+    # Read ssh key from string
     user1 = "public ssh-key"
-    user2 = "public ssh-key"
+    # Read ssh key from file
+    user2 = "path/to/ssh/pub/key"
   }
 }
 ```
