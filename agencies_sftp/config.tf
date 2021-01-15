@@ -8,7 +8,7 @@ terraform {
 		bucket = "sftp-terraform-state-bucket"
 		key = "tf-state"
 		region = "eu-west-1"
-		dynamodb_table = "terraform-state-lock-dynamo"
+		dynamodb_table = "sftp-terraform-state-lock-dynamo"
 		encrypt = true
 	}
 }
