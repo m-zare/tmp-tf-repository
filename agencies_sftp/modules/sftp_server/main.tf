@@ -1,5 +1,6 @@
 resource "aws_s3_bucket" "bucket" {
   bucket = var.bucket
+  acceleration_status = enabled
   versioning {
     enabled = false
   }
