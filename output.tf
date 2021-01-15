@@ -12,3 +12,8 @@ output "bucket" {
   value       = module.sftp_server.bucket
   description = "SFTP bucket name"
 }
+
+output "user_list" {
+  value       = [for k, _ in var.username : k] 
+  description = "SFTP user name"
+}
