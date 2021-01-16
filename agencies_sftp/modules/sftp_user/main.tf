@@ -1,6 +1,6 @@
 resource "aws_iam_role" "sftp_role" {
   name = "sftp_role_${var.username}"
-  assume_role_policy = file("${path.module}/files/role.json")
+  assume_role_policy = file("${path.module}/files/sftp_role.json")
   tags = {
     owner = "mzare"
   }
