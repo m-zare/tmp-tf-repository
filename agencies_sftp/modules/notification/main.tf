@@ -30,3 +30,23 @@ resource "aws_iam_role" "upload_history" {
     owner = "mzare"
   }
 }
+
+resource "aws_lambda_function" "upload_history" {
+  filename      = "${path.module}/files/s3_upload_history.zip"
+  function_name = "s3_upload_history"
+  role          = aws_iam_role.upload_history.arn
+  handler       = "s3_upload_history.lambda_handler"
+
+  source_code_hash = filebase64sha256("${path.module}/files/s3_upload_history.zip")
+
+  runtime = "python3.7"
+  environment {
+    variables = {
+      Table = aws_dynamodb_table.upload_history.name
+    }
+  }
+  
+  tags = {
+    owner = "mzare"
+  }
+}
