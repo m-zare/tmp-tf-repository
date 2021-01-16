@@ -4,8 +4,8 @@ variable "region" {
 
 variable "production" {
   description = "Production environment flag"
-  type = bool
-  default = false
+  type        = bool
+  default     = false
 }
 
 variable "username" {

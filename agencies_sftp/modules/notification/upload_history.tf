@@ -25,7 +25,7 @@ resource "aws_lambda_function" "upload_history" {
       Table = aws_dynamodb_table.upload_history.name
     }
   }
-  
+
   tags = {
     owner = "mzare"
   }

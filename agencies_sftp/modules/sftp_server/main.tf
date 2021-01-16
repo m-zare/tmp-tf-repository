@@ -1,7 +1,7 @@
 resource "aws_s3_bucket" "bucket" {
-  bucket = var.bucket
+  bucket              = var.bucket
   acceleration_status = "Enabled"
-  force_destroy = !var.force_destroy
+  force_destroy       = !var.force_destroy
   versioning {
     enabled = false
   }
@@ -18,10 +18,10 @@ resource "aws_s3_bucket" "bucket" {
 }
 
 resource "aws_s3_bucket_public_access_block" "public" {
-  bucket = aws_s3_bucket.bucket.id
-  block_public_acls = true
-  block_public_policy = true
-  ignore_public_acls = true
+  bucket                  = aws_s3_bucket.bucket.id
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
   restrict_public_buckets = true
 }
 

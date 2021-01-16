@@ -15,22 +15,22 @@ resource "aws_lambda_function" "send_notification" {
   runtime = "python3.8"
   environment {
     variables = {
-      Table = aws_dynamodb_table.upload_history.name
-      ServerID = var.serverID
-      SenderName = var.senderName
-      SenderEmail = var.senderEmail
+      Table          = aws_dynamodb_table.upload_history.name
+      ServerID       = var.serverID
+      SenderName     = var.senderName
+      SenderEmail    = var.senderEmail
       RecipientEmail = var.recipientEmail
-      Region = data.aws_region.current.name
+      Region         = data.aws_region.current.name
     }
   }
-  
+
   tags = {
     owner = "mzare"
   }
 }
 
 resource "aws_cloudwatch_event_rule" "periodically" {
-  name = "periodic-event-run"
+  name                = "periodic-event-run"
   schedule_expression = "cron(0 8 * * ? *)"
 
   tags = {
@@ -40,13 +40,13 @@ resource "aws_cloudwatch_event_rule" "periodically" {
 
 resource "aws_cloudwatch_event_target" "send_notification_periodically" {
   rule = aws_cloudwatch_event_rule.periodically.name
-  arn = aws_lambda_function.send_notification.arn
+  arn  = aws_lambda_function.send_notification.arn
 }
 
 resource "aws_lambda_permission" "allow_cloudwatch_to_call_send_notification" {
-    statement_id = "AllowExecutionFromCloudWatch"
-    action = "lambda:InvokeFunction"
-    function_name = aws_lambda_function.send_notification.function_name
-    principal = "events.amazonaws.com"
-    source_arn = aws_cloudwatch_event_rule.periodically.arn
+  statement_id  = "AllowExecutionFromCloudWatch"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.send_notification.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.periodically.arn
 }

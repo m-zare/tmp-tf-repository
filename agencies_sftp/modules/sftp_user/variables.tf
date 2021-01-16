@@ -1,19 +1,19 @@
 variable "bucket" {
-  type = string
+  type        = string
   description = "Bucket name"
 }
 
 variable "sftp_server_id" {
-  type = string
+  type        = string
   description = "SFTP server id"
 }
 
 variable "username" {
-  type = string
+  type        = string
   description = "Agency user"
 }
 
 variable "ssh_key" {
-  type = string
+  type        = string
   description = "Public SSH key"
 }

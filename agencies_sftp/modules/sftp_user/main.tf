@@ -1,5 +1,5 @@
 resource "aws_iam_role" "sftp_role" {
-  name = "sftp_role_${var.username}"
+  name               = "sftp_role_${var.username}"
   assume_role_policy = file("${path.module}/files/sftp_role.json")
   tags = {
     owner = "mzare"
@@ -11,15 +11,15 @@ locals {
 }
 
 resource "aws_iam_role_policy" "sftp_policy" {
-  name = "sftp_iam_policy_${var.username}"
-  role = aws_iam_role.sftp_role.id
+  name   = "sftp_iam_policy_${var.username}"
+  role   = aws_iam_role.sftp_role.id
   policy = local.policy
 }
 
 resource "aws_transfer_user" "agency" {
-  server_id = var.sftp_server_id
-  user_name = var.username
-  role      = aws_iam_role.sftp_role.arn
+  server_id      = var.sftp_server_id
+  user_name      = var.username
+  role           = aws_iam_role.sftp_role.arn
   home_directory = format("/%s/%s", var.bucket, var.username)
   tags = {
     owner = "mzare"
