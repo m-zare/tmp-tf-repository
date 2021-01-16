@@ -21,4 +21,5 @@ module "notification" {
   depends_on = [module.sftp_server]
   
   bucket = module.sftp_server.bucket
+  serverID = module.sftp_server.id
 }
