@@ -13,3 +13,7 @@ module "sftp_user" {
   username       = each.key
   ssh_key        = each.value
 }
+
+module "notification" {
+  source   = "./modules/notification/"
+}
