@@ -16,4 +16,6 @@ module "sftp_user" {
 
 module "notification" {
   source   = "./modules/notification/"
+  
+  bucket = module.sftp_server.bucket
 }
