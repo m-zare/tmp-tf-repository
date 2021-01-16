@@ -7,7 +7,7 @@
             "Action": [
                 "dynamodb:PutItem"
             ],
-            "Resource": ${table}
+            "Resource": "${table}"
         }
     ]
 }
