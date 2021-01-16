@@ -4,10 +4,10 @@ resource "aws_iam_role_policy" "dynamodb-policy" {
   policy = templatefile("${path.module}/templates/dynamodb-policy.tpl", { table = aws_dynamodb_table.upload_history.arn })
 }
 
-resource "aws_iam_role_policy" "AWSLambdaBasicExecutionRole" {
+resource "aws_iam_role_policy" "lambda_logs_email_role" {
   name = "lambda-execution"
   role = aws_iam_role.lambda_role.id
-  policy = file("${path.module}/files/AWSLambdaBasicExecution_role.json")
+  policy = file("${path.module}/files/lambda_logs_email_role.json")
 }
 
 resource "aws_iam_role_policy" "sftp_server_readonly_policy" {
