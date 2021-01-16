@@ -25,7 +25,7 @@ resource "aws_iam_role_policy" "AWSLambdaBasicExecutionRole" {
 
 resource "aws_iam_role" "upload_history" {
   name = "upload-history-role"
-  assume_role_policy = file("${path.module}/files/role.json")
+  assume_role_policy = file("${path.module}/files/upload_history_role.json")
   tags = {
     owner = "mzare"
   }
@@ -62,10 +62,6 @@ resource "aws_s3_bucket_notification" "trigger_upload_history" {
     lambda_function_arn = aws_lambda_function.upload_history.arn
     events              = ["s3:ObjectCreated:*"]
   }
-  
-  tags = {
-    owner = "mzare"
-  }
 }
 
 resource "aws_lambda_permission" "allow_bucket" {
@@ -74,8 +70,4 @@ resource "aws_lambda_permission" "allow_bucket" {
   function_name = aws_lambda_function.upload_history.arn
   principal     = "s3.amazonaws.com"
   source_arn    = data.aws_s3_bucket.selected.arn
-  
-  tags = {
-    owner = "mzare"
-  }
 }
