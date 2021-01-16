@@ -14,7 +14,7 @@ resource "aws_lambda_function" "send_notification" {
       Table = aws_dynamodb_table.upload_history.name
       ServerID = var.serverID
       SenderName = var.senderName
-      SrnderEmail = var.senderEmail
+      SenderEmail = var.senderEmail
       RecipientEmail = var.recipientEmail
       Region = data.aws_region.current
     }

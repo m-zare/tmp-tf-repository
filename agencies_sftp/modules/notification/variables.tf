@@ -10,7 +10,7 @@ variable "senderName" {
   default = "AWS SFTP Notification System"
 }
 
-variable "srnderEmail" {
+variable "senderEmail" {
 
 }
 variable "recipientEmail" {
