@@ -1,5 +1,9 @@
 data "aws_region" "current" {}
 
+resource "aws_ses_email_identity" "notification_sender_email" {
+  email = var.senderEmail
+}
+
 resource "aws_lambda_function" "send_notification" {
   filename      = "${path.module}/files/send_notification.zip"
   function_name = "send_notification"
