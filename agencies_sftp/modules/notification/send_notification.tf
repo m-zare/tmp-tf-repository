@@ -30,12 +30,15 @@ resource "aws_lambda_function" "send_notification" {
 }
 
 resource "aws_cloudwatch_event_rule" "periodically" {
-  name = "every-five-minutes"
-  description = "Fires every five minutes"
+  name = "periodic-event-run"
   schedule_expression = "cron(0 8 * * ? *)"
+
+  tags = {
+    owner = "mzare"
+  }
 }
 
-resource "aws_cloudwatch_event_target" "send_notification_every_five_minutes" {
+resource "aws_cloudwatch_event_target" "send_notification_periodically" {
   rule = aws_cloudwatch_event_rule.periodically.name
   arn = aws_lambda_function.send_notification.arn
 }
