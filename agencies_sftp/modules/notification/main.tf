@@ -50,3 +50,32 @@ resource "aws_lambda_function" "upload_history" {
     owner = "mzare"
   }
 }
+
+data "aws_s3_bucket" "selected" {
+  bucket = var.bucket
+}
+
+resource "aws_s3_bucket_notification" "trigger_upload_history" {
+  bucket = data.aws_s3_bucket.selected.id
+
+  lambda_function {
+    lambda_function_arn = aws_lambda_function.upload_history.arn
+    events              = ["s3:ObjectCreated:*"]
+  }
+  
+  tags = {
+    owner = "mzare"
+  }
+}
+
+resource "aws_lambda_permission" "allow_bucket" {
+  statement_id  = "AllowExecutionFromS3Bucket"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.upload_history.arn
+  principal     = "s3.amazonaws.com"
+  source_arn    = data.aws_s3_bucket.selected.arn
+  
+  tags = {
+    owner = "mzare"
+  }
+}
