@@ -1,3 +1,7 @@
 variable "bucket" {
-    
+
+}
+
+variable "serverID" {
+
 }
