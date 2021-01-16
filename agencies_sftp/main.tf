@@ -2,11 +2,13 @@ module "sftp_server" {
   source = "./modules/sftp_server/"
 
   bucket = "sftp-agencies"
+  force_destroy = true
 }
 
 module "sftp_user" {
   for_each = var.username
   source   = "./modules/sftp_user/"
+  depends_on = [module.sftp_server]
 
   bucket         = module.sftp_server.bucket
   sftp_server_id = module.sftp_server.id
@@ -16,6 +18,7 @@ module "sftp_user" {
 
 module "notification" {
   source   = "./modules/notification/"
+  depends_on = [module.sftp_server]
   
   bucket = module.sftp_server.bucket
 }

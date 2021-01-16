@@ -1,6 +1,7 @@
 resource "aws_s3_bucket" "bucket" {
   bucket = var.bucket
   acceleration_status = "Enabled"
+  force_destroy = var.force_destroy
   versioning {
     enabled = false
   }
