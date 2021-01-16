@@ -1,12 +1,12 @@
 resource "aws_iam_role_policy" "dynamodb-policy" {
   name = "dynamodb-policy"
-  role = aws_iam_role.upload_history.id
+  role = aws_iam_role.lambda_role.id
   policy = templatefile("${path.module}/templates/dynamodb-policy.tpl", { table = aws_dynamodb_table.upload_history.arn })
 }
 
 resource "aws_iam_role_policy" "AWSLambdaBasicExecutionRole" {
   name = "lambda-execution"
-  role = aws_iam_role.upload_history.id
+  role = aws_iam_role.lambda_role.id
   policy = file("${path.module}/files/AWSLambdaBasicExecution_role.json")
 }
 
