@@ -2,7 +2,7 @@ module "sftp_server" {
   source = "./modules/sftp_server/"
 
   bucket = "sftp-agencies"
-  force_destroy = true
+  force_destroy = var.production
 }
 
 module "sftp_user" {

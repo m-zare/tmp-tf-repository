@@ -2,6 +2,12 @@ variable "region" {
   default = "eu-west-1"
 }
 
+variable "production" {
+  description = "Production environment flag"
+  type = bool
+  default = false
+}
+
 variable "username" {
   description = "SFTP user"
 
