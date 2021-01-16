@@ -16,3 +16,7 @@ variable "senderEmail" {
 variable "recipientEmail" {
 
 }
+
+variable "schedule_expression" {
+  default = "cron(0 8 * * ? *)"
+}

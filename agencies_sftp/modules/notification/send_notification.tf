@@ -29,14 +29,14 @@ resource "aws_lambda_function" "send_notification" {
   }
 }
 
-resource "aws_cloudwatch_event_rule" "every_five_minutes" {
+resource "aws_cloudwatch_event_rule" "periodically" {
   name = "every-five-minutes"
   description = "Fires every five minutes"
-  schedule_expression = "rate(5 minutes)"
+  schedule_expression = "cron(0 8 * * ? *)"
 }
 
 resource "aws_cloudwatch_event_target" "send_notification_every_five_minutes" {
-  rule = aws_cloudwatch_event_rule.every_five_minutes.name
+  rule = aws_cloudwatch_event_rule.periodically.name
   arn = aws_lambda_function.send_notification.arn
 }
 
@@ -45,5 +45,5 @@ resource "aws_lambda_permission" "allow_cloudwatch_to_call_send_notification" {
     action = "lambda:InvokeFunction"
     function_name = aws_lambda_function.send_notification.function_name
     principal = "events.amazonaws.com"
-    source_arn = aws_cloudwatch_event_rule.every_five_minutes.arn
+    source_arn = aws_cloudwatch_event_rule.periodically.arn
 }
