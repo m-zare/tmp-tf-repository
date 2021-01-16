@@ -10,7 +10,7 @@ resource "aws_lambda_function" "send_notification" {
   environment {
     variables = {
       Table = aws_dynamodb_table.upload_history.name
-      serverID = var.serverID
+      ServerID = var.serverID
     }
   }
   
