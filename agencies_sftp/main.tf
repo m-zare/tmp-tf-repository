@@ -22,4 +22,6 @@ module "notification" {
   
   bucket = module.sftp_server.bucket
   serverID = module.sftp_server.id
+  srnderEmail = "mostafazare@gmail.com"
+  recipientEmail = "mostafazare@gmail.com"
 }

@@ -1,3 +1,5 @@
+data "aws_region" "current" {}
+
 resource "aws_lambda_function" "send_notification" {
   filename      = "${path.module}/files/send_notification.zip"
   function_name = "send_notification"
@@ -11,6 +13,10 @@ resource "aws_lambda_function" "send_notification" {
     variables = {
       Table = aws_dynamodb_table.upload_history.name
       ServerID = var.serverID
+      SenderName = var.senderName
+      SrnderEmail = var.senderEmail
+      RecipientEmail = var.recipientEmail
+      Region = data.aws_region.current
     }
   }
   
