@@ -16,7 +16,7 @@ resource "aws_lambda_function" "send_notification" {
       SenderName = var.senderName
       SenderEmail = var.senderEmail
       RecipientEmail = var.recipientEmail
-      Region = data.aws_region.current
+      Region = data.aws_region.current.name
     }
   }
   
