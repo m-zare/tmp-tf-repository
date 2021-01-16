@@ -20,26 +20,34 @@ git clone https://github.com/m-zare/tmp-tf-repository.git
 
 ### Deploy AWS s3 backend
 
+**Initialize modules:**
+
 ```bash
 cd tmp-tf-repository/aws_infra
 terraform init
+```
+
+**Apply configuration:**
+
+```bash
 terraform apply
 ```
 
 ### Deploy SFTP server and users
 
+**Initialize modules:**
+
 ```bash
  cd ../agencies_sftp/
+ terraform init
 ```
 
-Open `variables.tf` in your favorite editor and edit `username` to reflect desired state (it also could pass via cli argument `-var` or variables file `-var-file`).
+Open `sample.tfvars` or `variables.tf` in your favorite editor and edit `username` to reflect desired state (it also could pass via cli argument `-var` or variables file `-var-file`).
 In following case `user1` and `user2` are users to be created. Please note that you need to replace `public ssh-key` with the user's actual public SSH key or path to the SSH public key file.
 This variable could contain as many users as agency needs.
 
 ```text
-variable "username" {
-  description = "SFTP user"
-
+  ...
   default = {
     # Read ssh key from string
     user1 = "public ssh-key"
@@ -49,11 +57,17 @@ variable "username" {
 }
 ```
 
+**Apply configuration:**
 After `username` modification, run terraform.
 
 ```bash
-terraform init
 terraform apply
+```
+
+Or with `sample.tfvars`
+
+```bash
+terraform apply -var-file sample.tfvars
 ```
 
 ## Modification
