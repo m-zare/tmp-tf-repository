@@ -7,7 +7,7 @@
             "Action": [
                 "dynamodb:PutItem"
             ],
-            "Resource": "arn:aws:dynamodb:eu-west-1:939595455984:table/sftp"
+            "Resource": ${table}
         }
     ]
 }

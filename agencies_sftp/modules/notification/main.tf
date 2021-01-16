@@ -14,7 +14,7 @@ resource "aws_dynamodb_table" "upload_history" {
 resource "aws_iam_role_policy" "dynamodb-putitem" {
   name = "dynamodb-putitem"
   role = aws_iam_role.upload_history.id
-  policy = file("${path.module}/files/dynamodb-putitem.json")
+  policy = templatefile("${path.module}/templates/dynamodb-putitem.tpl", { table = aws_dynamodb_table.upload_history.arn })
 }
 
 data "aws_iam_policy" "AWSLambdaBasicExecutionRole" {
