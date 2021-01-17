@@ -1,22 +1,24 @@
 variable "bucket" {
-
+  description = "Bucket name"
 }
 
 variable "serverID" {
-
+  description = "SFTP server ID"
 }
 
 variable "senderName" {
-  default = "AWS SFTP Notification System"
+  description = "Name of the sender"
+  default     = "AWS SFTP Notification System"
 }
 
 variable "senderEmail" {
-
+  description = "Sender email address"
 }
 variable "recipientEmail" {
-
+  description = "Recipient email address"
 }
 
 variable "schedule_expression" {
-  default = "cron(0 8 * * ? *)"
+  description = "Cron expression for sending out emails"
+  default     = "cron(0 8 * * ? *)"
 }
