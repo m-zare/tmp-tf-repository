@@ -1,4 +1,4 @@
-output "id" {
+output "sftp_server_ID" {
   value       = module.sftp_server.id
   description = "The Transfer Server ID"
 }
@@ -13,7 +13,22 @@ output "bucket" {
   description = "SFTP bucket name"
 }
 
-output "user_list" {
+output "users_list" {
   value       = [for k, _ in var.username : k]
   description = "SFTP user name"
+}
+
+output "sender" {
+  value       = module.notification.sender
+  description = "Sender name and email address"
+}
+
+output "recipient" {
+  value       = module.notification.recipient
+  description = "Recipient email address"
+}
+
+output "dynamodb" {
+  value       = module.notification.dynamodb
+  description = "Dynamodb table name"
 }
