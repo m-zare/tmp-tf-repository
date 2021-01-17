@@ -1,3 +1,6 @@
+# Create users of the SFTP service.
+# The ssh_key could be a path to the file or a string contains the key content. 
+
 resource "aws_iam_role" "sftp_role" {
   name               = "sftp_role_${var.username}"
   assume_role_policy = file("${path.module}/files/sftp_role.json")

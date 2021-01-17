@@ -1,3 +1,6 @@
+# Create a Lambda function. It will get trigger whenever a create action happened on 
+# the s3 bucket. Then create an object in dynamodb. This object is showing user's activity.
+
 resource "aws_dynamodb_table" "upload_history" {
   name         = "sftp-upload-history"
   billing_mode = "PAY_PER_REQUEST"

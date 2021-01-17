@@ -1,3 +1,8 @@
+# Lambda function to send notification of inactivity.
+# It will be triggered base on a cron schedule. On trigger looks into
+# a dynamodb table for user activity. If no activity detected an email 
+# would be sent.
+
 data "aws_region" "current" {}
 
 resource "aws_ses_email_identity" "notification_sender_email" {

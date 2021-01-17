@@ -1,3 +1,5 @@
+# Common resources used by other configurations are deployed here.
+
 resource "aws_iam_role_policy" "dynamodb-policy" {
   name   = "dynamodb-policy"
   role   = aws_iam_role.lambda_role.id

@@ -1,3 +1,7 @@
+# Setup SFTP server resource and the s3 bucket to save date into.
+# Acceleration is enabled for the `bucket`. And public access is denied.
+# `force_destroy` is disabled by default.
+
 resource "aws_s3_bucket" "bucket" {
   bucket              = var.bucket
   acceleration_status = "Enabled"
