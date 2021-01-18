@@ -26,9 +26,12 @@ variable "senderName" {
 
 variable "senderEmail" {
   description = "Sender email address"
+  default     = "mostafazare@gmail.com"
 }
+
 variable "recipientEmail" {
   description = "Recipient email address"
+  default     = "mostafazare@gmail.com"
 }
 
 variable "scheduleExpression" {
