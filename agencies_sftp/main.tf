@@ -20,8 +20,10 @@ module "notification" {
   source     = "./modules/notification/"
   depends_on = [module.sftp_server]
 
-  bucket         = module.sftp_server.bucket
-  serverID       = module.sftp_server.id
-  senderEmail    = "mostafazare@gmail.com"
-  recipientEmail = "mostafazare@gmail.com"
+  bucket             = module.sftp_server.bucket
+  serverID           = module.sftp_server.id
+  senderName         = var.senderName
+  senderEmail        = var.senderEmail
+  recipientEmail     = var.recipientEmail
+  scheduleExpression = var.scheduleExpression
 }

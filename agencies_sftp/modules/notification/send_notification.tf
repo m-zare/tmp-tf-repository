@@ -36,7 +36,7 @@ resource "aws_lambda_function" "send_notification" {
 
 resource "aws_cloudwatch_event_rule" "periodically" {
   name                = "periodic-event-run"
-  schedule_expression = "cron(0 8 * * ? *)"
+  schedule_expression = var.scheduleExpression
 
   tags = {
     owner = "mzare"
