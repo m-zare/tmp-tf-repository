@@ -14,6 +14,7 @@ variable "senderName" {
 variable "senderEmail" {
   description = "Sender email address"
 }
+
 variable "recipientEmail" {
   description = "Recipient email address"
 }

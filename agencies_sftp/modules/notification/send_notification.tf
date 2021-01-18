@@ -1,7 +1,7 @@
 # Lambda function to send notification of inactivity.
-# It will be triggered base on a cron schedule. On trigger looks into
-# a dynamodb table for user activity. If no activity detected an email 
-# would be sent.
+# It will be triggered base on a cron schedule. On trigger list s3 bucket
+# objects and looks for each user activity. If no activity detected an 
+# email would be sent.
 
 data "aws_region" "current" {}
 
@@ -20,7 +20,6 @@ resource "aws_lambda_function" "send_notification" {
   runtime = "python3.8"
   environment {
     variables = {
-      Table          = aws_dynamodb_table.upload_history.name
       ServerID       = var.serverID
       SenderName     = var.senderName
       SenderEmail    = var.senderEmail
