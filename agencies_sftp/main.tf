@@ -1,8 +1,8 @@
 module "sftp_server" {
   source = "./modules/sftp_server/"
 
-  bucket        = "sftp-agencies"
-  force_destroy = !var.production
+  bucket       = "sftp-agencies"
+  forceDestroy = !var.production
 }
 
 module "sftp_user" {
@@ -10,10 +10,10 @@ module "sftp_user" {
   source     = "./modules/sftp_user/"
   depends_on = [module.sftp_server]
 
-  bucket         = module.sftp_server.bucket
-  sftp_server_id = module.sftp_server.id
-  username       = each.key
-  ssh_key        = each.value
+  bucket       = module.sftp_server.bucket
+  sftpServerID = module.sftp_server.id
+  username     = each.key
+  sshKey       = each.value
 }
 
 module "notification" {
