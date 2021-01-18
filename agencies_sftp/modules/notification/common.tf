@@ -1,9 +1,9 @@
 # Common resources used by other configurations are deployed here.
 
-resource "aws_iam_role_policy" "dynamodb-policy" {
-  name   = "dynamodb-policy"
+resource "aws_iam_role_policy" "s3ListBucket" {
+  name   = "s3ListBucket"
   role   = aws_iam_role.lambda_role.id
-  policy = templatefile("${path.module}/templates/dynamodb-policy.tpl", { table = aws_dynamodb_table.upload_history.arn })
+  policy = templatefile("${path.module}/templates/s3ListBucket.tpl", { bucket = var.bucket })
 }
 
 resource "aws_iam_role_policy" "lambda_logs_email_role" {

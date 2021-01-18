@@ -27,8 +27,3 @@ output "recipient" {
   value       = module.notification.recipient
   description = "Recipient email address"
 }
-
-output "dynamodb" {
-  value       = module.notification.dynamodb
-  description = "Dynamodb table name"
-}
