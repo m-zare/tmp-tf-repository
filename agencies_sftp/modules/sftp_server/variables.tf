@@ -3,7 +3,7 @@ variable "bucket" {
   description = "Bucket name"
 }
 
-variable "force_destroy" {
+variable "forceDestroy" {
   type        = bool
   default     = false
   description = "Force non-empty bucket destroy"

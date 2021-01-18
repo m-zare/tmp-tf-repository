@@ -3,7 +3,7 @@ variable "bucket" {
   description = "Bucket name"
 }
 
-variable "sftp_server_id" {
+variable "sftpServerID" {
   type        = string
   description = "SFTP server id"
 }
@@ -13,7 +13,7 @@ variable "username" {
   description = "Agency user"
 }
 
-variable "ssh_key" {
+variable "sshKey" {
   type        = string
   description = "Public SSH key"
 }

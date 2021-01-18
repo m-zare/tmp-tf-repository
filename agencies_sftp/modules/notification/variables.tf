@@ -18,7 +18,7 @@ variable "recipientEmail" {
   description = "Recipient email address"
 }
 
-variable "schedule_expression" {
+variable "scheduleExpression" {
   description = "Cron expression for sending out emails"
   default     = "cron(0 8 * * ? *)"
 }

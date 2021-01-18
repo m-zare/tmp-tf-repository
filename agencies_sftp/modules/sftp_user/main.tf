@@ -20,7 +20,7 @@ resource "aws_iam_role_policy" "sftp_policy" {
 }
 
 resource "aws_transfer_user" "agency" {
-  server_id      = var.sftp_server_id
+  server_id      = var.sftpServerID
   user_name      = var.username
   role           = aws_iam_role.sftp_role.arn
   home_directory = format("/%s/%s", var.bucket, var.username)
@@ -30,7 +30,7 @@ resource "aws_transfer_user" "agency" {
 }
 
 resource "aws_transfer_ssh_key" "agency" {
-  server_id = var.sftp_server_id
+  server_id = var.sftpServerID
   user_name = aws_transfer_user.agency.user_name
-  body      = length(regexall("^ssh-rsa\\s+[A-Za-z0-9+/]+[=]{0,3}(\\s+.+)?\\s*$", var.ssh_key)) > 0 ? var.ssh_key : file(var.ssh_key)
+  body      = length(regexall("^ssh-rsa\\s+[A-Za-z0-9+/]+[=]{0,3}(\\s+.+)?\\s*$", var.sshKey)) > 0 ? var.sshKey : file(var.sshKey)
 }
